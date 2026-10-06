@@ -1,0 +1,688 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   Global Motion Tokens (Alive UI)
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --smooth:    cubic-bezier(0.4, 0, 0.2, 1);
+  --decel:     cubic-bezier(0, 0, 0.2, 1);
+  --dur-micro: 80ms;
+  --dur-fast:  150ms;
+  --dur-mid:   220ms;
+  --dur-slow:  380ms;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REMI/OMERION — Design Tokens (Cream/Pumpkin Palette)
+   ═══════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Metallic Champagne / Natural Titanium Base */
+  --color-bg-primary: #EBEAE4;     /* Light metallic champagne/sand */
+  --color-bg-surface: rgba(246, 246, 241, 0.45); /* Liquid glass frosted */
+  --color-bg-elevated: rgba(253, 252, 248, 0.75); /* Reflective brighter titanium/glass */
+  --color-bg-dark: #12100E;        /* Deep space black / dark bronze */
+
+  /* Premium Titanium/Space Black Accents */
+  --color-accent: #2C2A28;         /* Premium matte dark accent */
+  --color-accent-hover: #171615;
+  --color-accent-tertiary: #5A5652;
+
+  /* Brutalist High-Contrast Typography */
+  --color-text-primary: #11100F;   /* Almost black, deep sharp contrast */
+  --color-text-secondary: #58544F; /* Metallic grey/brown */
+  --color-text-tertiary: #8C867C;
+  --color-text-on-accent: #FFFFFF;
+
+  --color-success: #3D8B5D;
+  --color-warning: #C19932;
+  --color-error: #B54230;
+  --color-info: #496F95;
+
+  /* Light catching inner borders for glass effect */
+  --color-border: rgba(44, 42, 40, 0.08);
+  --color-border-hover: rgba(44, 42, 40, 0.20);
+
+  /* Deal Scores (Refined for luxury) */
+  --color-deal-excellent: #3D8B5D;
+  --color-deal-good: #C19932;
+  --color-deal-poor: #B54230;
+  --color-deal-hot: #267A8C;
+
+  /* Header Scan Option Colors */
+  --color-scan-sale: #0F52BA;
+  --color-scan-rent: #333333;
+  --color-scan-sold: #E8733A;
+  --color-scan-full: #7C3AED;
+
+  --color-scan-sale-hover: #0F52BA;
+  --color-scan-rent-hover: #333333;
+  --color-scan-sold-hover: #E8733A;
+  --color-scan-full-hover: #7C3AED;
+
+  /* Airtable Dropdown Colors (kept structurally identical, gently muted) */
+  --color-air-gray-bg: rgba(234, 234, 234, 0.5);
+  --color-air-gray-text: #333333;
+  --color-air-blue-bg: rgba(208, 228, 255, 0.5);
+  --color-air-blue-text: #0048A8;
+  --color-air-cyan-bg: rgba(194, 245, 233, 0.5);
+  --color-air-cyan-text: #005C49;
+  --color-air-teal-bg: rgba(194, 245, 233, 0.5);
+  --color-air-teal-text: #005C49;
+  --color-air-green-bg: rgba(209, 247, 196, 0.5);
+  --color-air-green-text: #105615;
+  --color-air-darkgreen-bg: rgba(174, 234, 148, 0.5);
+  --color-air-darkgreen-text: #0B410D;
+  --color-air-yellow-bg: rgba(255, 234, 182, 0.5);
+  --color-air-yellow-text: #7C5300;
+  --color-air-orange-bg: rgba(255, 211, 165, 0.5);
+  --color-air-orange-text: #8D3A00;
+  --color-air-red-bg: rgba(255, 192, 192, 0.5);
+  --color-air-red-text: #961214;
+  --color-air-pink-bg: rgba(255, 209, 235, 0.5);
+  --color-air-pink-text: #89004E;
+  --color-air-purple-bg: rgba(225, 213, 255, 0.5);
+  --color-air-purple-text: #451A9A;
+  --color-air-deepblue-bg: rgba(180, 212, 255, 0.5);
+  --color-air-deepblue-text: #003785;
+  --color-air-ultraluxury-bg: rgba(253, 226, 114, 0.5);
+  --color-air-ultraluxury-text: #694500;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Glass/Titanium Shadows */
+  --shadow-sm: 0 2px 4px rgba(20, 18, 16, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-md: 0 4px 12px rgba(20, 18, 16, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-lg: 0 12px 32px rgba(20, 18, 16, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-floating: 0 12px 32px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -4px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-hover-floating: 0 24px 48px -12px rgba(232, 115, 58, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  --font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root.theme-night {
+  /* Deep space black / dark bronze inverted liquid glass */
+  --color-bg-primary: #12100E;
+  --color-bg-surface: rgba(44, 42, 40, 0.45);
+  --color-bg-elevated: rgba(60, 58, 56, 0.75);
+  --color-bg-dark: #EBEAE4;
+  
+  --color-accent: #EBEAE4;
+  --color-accent-hover: #FFFFFF;
+  --color-accent-tertiary: #A5A5A5;
+  
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #C7C3BC;
+  --color-text-tertiary: #A5A199;
+  --color-text-on-accent: #11100F;
+  
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-border-hover: rgba(255, 255, 255, 0.30);
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Enhance hover visibility on dark backgrounds */
+  --color-scan-sale-hover: #60A5FA;
+  --color-scan-rent-hover: #A1A1AA;
+  --color-scan-sold-hover: #FDBA74;
+  --color-scan-full-hover: #A78BFA;
+}
+
+:root.theme-colorblind {
+  /* Dark Navy / Deep Slate liquid glass aesthetic */
+  --color-bg-primary: #0A1118;
+  --color-bg-surface: rgba(18, 30, 43, 0.45);
+  --color-bg-elevated: rgba(28, 44, 60, 0.75);
+  --color-bg-dark: #E2E8F0;
+
+  --color-accent: #0072B2; /* Strong Blue */
+  --color-accent-hover: #005A8C;
+  --color-accent-tertiary: #56B4E9; /* Sky Blue */
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-tertiary: #94A3B8;
+  --color-text-on-accent: #FFFFFF;
+
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-hover: rgba(255, 255, 255, 0.25);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  /* Colorblind friendly distinct palettes */
+  --color-success: #0072B2; /* Strong Blue */
+  --color-warning: #F0E442;
+  --color-error: #D55E00; /* Vermillion */
+  --color-info: #009E73;
+  
+  --color-deal-excellent: #0072B2;
+  --color-deal-good: #F0E442;
+  --color-deal-poor: #D55E00;
+  --color-deal-hot: #CC79A7;
+
+  /* Enhance hover visibility on dark backgrounds */
+  --color-scan-sale-hover: #60A5FA;
+  --color-scan-rent-hover: #A1A1AA;
+  --color-scan-sold-hover: #FDBA74;
+  --color-scan-full-hover: #A78BFA;
+}
+
+:root.theme-system {
+  /* Soft Peach/Cream Gradient aesthetic */
+  --color-bg-primary: #FCF9F6;
+  --color-bg-surface: rgba(255, 239, 230, 0.45);
+  --color-bg-elevated: rgba(255, 247, 242, 0.75);
+  --color-bg-dark: #FFEDDF;
+  
+  --color-accent: #EFA68F;
+  --color-accent-hover: #DF8F75;
+  --color-accent-tertiary: #F8CBB8;
+  
+  --color-text-primary: #332621;
+  --color-text-secondary: #7A655C;
+  --color-text-tertiary: #A8958D;
+  --color-text-on-accent: #FFFFFF;
+  
+  --color-border: rgba(239, 166, 143, 0.15);
+  --color-border-hover: rgba(239, 166, 143, 0.35);
+  
+  --shadow-sm: 0 2px 4px rgba(239, 166, 143, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --shadow-md: 0 4px 12px rgba(239, 166, 143, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --shadow-lg: 0 12px 32px rgba(239, 166, 143, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --color-success: #6CA580;
+  --color-warning: #E2B963;
+  --color-error: #D46A6A;
+  --color-info: #6B91B5;
+  
+  --color-deal-excellent: #6CA580;
+  --color-deal-good: #E2B963;
+  --color-deal-poor: #D46A6A;
+  --color-deal-hot: #C47990;
+}
+
+@layer base {
+  html.theme-night {
+    --color-bg-primary: #11100F;
+    --color-bg-surface: rgba(30, 30, 30, 0.45);
+    --color-bg-elevated: rgba(45, 45, 45, 0.75);
+    --color-bg-dark: #EBEAE4;
+    --color-accent: #E8E6E1;
+    --color-accent-hover: #FFFFFF;
+    --color-accent-tertiary: #A5A5A5;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #A09E9C;
+    --color-text-tertiary: #73706B;
+    --color-text-on-accent: #11100F;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-hover: rgba(255, 255, 255, 0.20);
+  }
+
+  html.theme-colorblind {
+    --color-success: #0056B3;
+    --color-warning: #FFC107;
+    --color-error: #D9534F;
+    --color-deal-excellent: #0056B3;
+    --color-deal-good: #FFC107;
+    --color-deal-poor: #D9534F;
+    --color-deal-hot: #8A2BE2;
+  }
+}
+
+@layer utilities {
+  .omerion-glow {
+    background: linear-gradient(135deg, #FFB28B 0%, #E8733A 100%);
+    box-shadow: 0 4px 16px rgba(232, 115, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL BASE STYLES
+   ═══════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SKELETON LOADER ANIMATION
+   ═══════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  /* Liquid Glass Injector */
+  .bg-bg-surface, .bg-bg-elevated {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Alive UI — Interaction Classes (Liquid Glass Details)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Card Hover System */
+.remi-card {
+  transition:
+    transform     var(--dur-fast) var(--smooth),
+    box-shadow    var(--dur-fast) var(--smooth),
+    border-color  var(--dur-fast) var(--smooth) !important;
+  will-change: transform;
+  cursor: pointer;
+  background-color: var(--color-bg-surface);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.remi-card:hover {
+  transform:   translateY(-4px) scale(1.01);
+  box-shadow:  0 16px 40px rgba(20, 18, 16, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.40) !important;
+}
+
+.remi-card:active {
+  transform:   translateY(-1px) scale(0.99);
+  box-shadow:  0 4px 12px rgba(20, 18, 16, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  transition-duration: var(--dur-micro) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  transition: transform var(--dur-micro), box-shadow var(--dur-fast) var(--smooth), background var(--dur-fast) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(20,18,16,0.1), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+}
+.btn-primary:hover  { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,18,16,0.15), inset 0 1px 0 rgba(255,255,255,0.3) !important; }
+.btn-primary:active { transform: translateY(0px) scale(0.97);  box-shadow: 0 2px 8px rgba(20,18,16,0.1), inset 0 1px 0 rgba(255,255,255,0.1) !important; transition-duration: 60ms !important; }
+
+/* Filter Pills */
+.filter-pill {
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-micro), box-shadow var(--dur-fast) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.filter-pill:hover  { background: rgba(20,18,16,0.04) !important; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(20,18,16,0.06), inset 0 1px 0 rgba(255,255,255,0.4) !important; }
+.filter-pill:active { transform: scale(0.96); transition-duration: 60ms !important; }
+.filter-pill--active {
+  background: var(--color-accent) !important; color: #FFF !important;
+  box-shadow: 0 4px 16px rgba(44,42,40,0.25), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+}
+
+/* Deal Score Badge */
+.deal-score-badge {
+  transition: transform var(--dur-fast) var(--spring) !important;
+}
+.deal-score-badge:hover { transform: scale(1.08); }
+
+/* Interactive Icons */
+.icon-interactive {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--spring);
+}
+.icon-interactive:hover { transform: scale(1.18) rotate(-5deg); }
+
+/* Stagger List Entrance */
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.list-item {
+  animation: cardEnter var(--dur-mid) var(--decel) both;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.skeleton {
+  background: var(--color-bg-surface);
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEAFLET MAP OVERRIDES
+   ═══════════════════════════════════════════════════════════ */
+
+.leaflet-container {
+  background: var(--color-bg-surface) !important;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  font-family: var(--font-sans);
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px !important;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Price markers */
+.price-marker {
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.price-marker:hover,
+.price-marker.active {
+  transform: scale(1.15);
+  box-shadow: var(--shadow-md);
+  z-index: 1000 !important;
+}
+
+.price-marker.deal-excellent {
+  border-color: var(--color-deal-excellent);
+}
+.price-marker.deal-good {
+  border-color: var(--color-deal-good);
+}
+.price-marker.deal-poor {
+  border-color: var(--color-deal-poor);
+}
+.price-marker.deal-hot {
+  border-color: var(--color-deal-hot);
+}
+
+/* Cluster markers */
+.marker-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marker-cluster div {
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cluster-small {
+  background: var(--color-accent);
+  width: 32px;
+  height: 32px;
+}
+.cluster-medium {
+  background: var(--color-accent-hover);
+  width: 40px;
+  height: 40px;
+}
+.cluster-large {
+  background: var(--color-accent-tertiary);
+  width: 48px;
+  height: 48px;
+}
+
+/* Custom cluster icon — override defaults */
+.remi-cluster-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Leaflet MarkerCluster default override — hide blue circles */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background: transparent !important;
+}
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background: transparent !important;
+}
+
+/* Selected marker ping animation */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Scrollbar thin utility for sidebars */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 99px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR STYLING
+   ═══════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST ANIMATION
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes toast-enter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-exit {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: toast-enter 0.3s ease-out;
+}
+.toast-exit {
+  animation: toast-exit 0.3s ease-in forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAP OS — Object Detail Panel (Phase 2)
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes odp-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.odp-slide-in {
+  animation: odp-slide-in 0.25s ease-out;
+}
+
+/* Rich property tooltip */
+.property-rich-tooltip .leaflet-tooltip-content {
+  padding: 0 !important;
+}
+
+.leaflet-tooltip.property-rich-tooltip {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+}
+
+.leaflet-tooltip.property-rich-tooltip::before {
+  border-top-color: white;
+}
+
+/* Neighborhood boundary hover */
+.neighborhood-tooltip {
+  background: var(--color-bg-elevated) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-sm) !important;
+  font-family: var(--font-sans) !important;
+  padding: 4px 8px !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAP OS — Time Slider + Event Markers (Phase 3)
+   ═══════════════════════════════════════════════════════════ */
+
+.time-slider-bar {
+  animation: odp-slide-in 0.2s ease-out;
+  animation-name: slide-up;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Event tooltip */
+.leaflet-tooltip.event-tooltip {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+}
+
+.leaflet-tooltip.event-tooltip::before {
+  border-top-color: white;
+}
+
+/* Event marker pulse for critical severity */
+.event-marker-critical {
+  animation: event-pulse 2s ease-in-out infinite;
+}
+
+@keyframes event-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,80,60,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(201,80,60,0); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MARKET NEWS — Photo Fallbacks (War Room)
+   ═══════════════════════════════════════════════════════════ */
+
+.news-card-image-branded {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.branded-source-name {
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.branded-icon { font-size: 24px; opacity: 0.7; }
+/* ═══════════════════════════════════════════════════════════
+   MOTION SYSTEM — Page Transitions
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-transition {
+  animation: page-enter 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAP MARKER — Property pop-in animation
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes markerAppear {
+  from { transform: translateY(-14px) scale(0.45); opacity: 0; }
+  to   { transform: translateY(0)     scale(1);    opacity: 1; }
+}
+

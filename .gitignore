@@ -1,0 +1,29 @@
+# Dependencies and generated output
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
+.cache/
+.vite/
+*.tsbuildinfo
+*.log
+
+# Environment and credentials
+.env*
+!.env.example
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+
+# Deployment metadata
+.vercel/
+
+# Local editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.sw?
