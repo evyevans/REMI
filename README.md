@@ -1,6 +1,12 @@
-# REMI Showcase
+# REMI
 
-Standalone React + TypeScript + Vite showcase with existing guest access and fictional Austin/Denver property data. This repository contains the frontend only; it does not include a production property feed or backend.
+![REMI — Know what deserves a closer look](assets/remi-open-source-banner.jpeg)
+
+**Open sourced October 6, 2026.**
+
+REMI is an interactive real estate intelligence platform showcase, with guest access to market insights, property research, and neighborhood maps across Austin and Denver. Built with React, TypeScript, and Vite.
+
+This repository contains the frontend showcase. Live data services and backend integrations require separately configured services.
 
 ## Reference deployment
 
